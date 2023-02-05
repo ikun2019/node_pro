@@ -4,9 +4,15 @@ const rootDir = require('../util/path');
 
 const adminRoutes = require('./admin');
 
-const productsController = require('../controllers/products');
+const shopController = require('../controllers/shop');
 
 // * GET => /
-router.get('/', productsController.getProducts);
+router.get('/', shopController.getIndex);
+// * GET => /products
+router.get('/products', shopController.getProducts);
+// * GET => /cart
+router.get('/cart', shopController.getCart);
+// * GET => /checkout
+router.get('/checkout', shopController.getChechout);
 
 module.exports = router;
