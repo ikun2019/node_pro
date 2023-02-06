@@ -10,9 +10,19 @@ const shopController = require('../controllers/shop');
 router.get('/', shopController.getIndex);
 // * GET => /products
 router.get('/products', shopController.getProducts);
+// * GET => /products/:productId
+router.get('/products/:productId', shopController.getProduct);
+// * DELETE => /products/delete/:productId
+router.get('/products/delete/:productId');
+
 // * GET => /cart
 router.get('/cart', shopController.getCart);
+// * POST => /cart
+router.post('/cart', shopController.postCart);
+
 // * GET => /checkout
 router.get('/checkout', shopController.getChechout);
+// * GET => /orders
+router.get('/orders', shopController.getOrders);
 
 module.exports = router;
