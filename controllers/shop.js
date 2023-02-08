@@ -24,13 +24,22 @@ exports.getProducts = (req, res, next) => {
 
 exports.getProduct = (req, res, next) => {
   const prodId = req.params.productId;
-  Product.findById(prodId, product => {
-    res.render('shop/product-detail', {
-      product: product,
-      path: '/products',
-      pageTitle: product.title
-    });
-  });
+  // Product.findById(prodId, product => {
+  //   res.render('shop/product-detail', {
+  //     product: product,
+  //     path: '/products',
+  //     pageTitle: product.title
+  //   });
+  // });
+  Product.findById(prodId)
+    .then(([product]) => {
+      res.render('shop/product-detail', {
+        product: product[0],
+        path: '/products',
+        pageTitle: product.title
+      });
+    })
+    .catch(err => console.log(err));
 };
 
 exports.getIndex = (req, res, next) => {
