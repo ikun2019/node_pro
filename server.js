@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(express.json());
 
 // ! 静的ファイルの使用
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/public')));
 
 // ! routerのマウント
 app.use('/admin', adminRoutes);
