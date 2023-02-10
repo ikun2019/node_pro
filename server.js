@@ -9,6 +9,9 @@ const sequelize = require('./util/database');
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 
+const Product = require('./models/product');
+const User = require('./models/user');
+
 const app = express();
 
 // app.engine('hbs', expressHbs({ layoutsDir: 'views/layouts/', defaultLayout: 'main-layout', extname: 'hbs' }));
@@ -35,8 +38,12 @@ app.use(shopRoutes);
 
 app.use(errorController.get404);
 
-// モデルをデータベースに同期
-sequelize.sync()
+// ! アソシエーション
+Product.belongsTo(User, { constraints: true, onDelete: 'CASCADE'});
+User.hasMany(Product);
+
+// モデルをデータベースに同期 * force:trueはテーブルを上書きする設定のため、開発中のみ使用
+sequelize.sync({ force: true})
   .then(result => {
     // console.log(result);
     app.listen(3000);
