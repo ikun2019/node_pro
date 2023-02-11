@@ -4,17 +4,20 @@ const path = require('path');
 // const expressHbs = require('express-handlebars');
 const errorController = require('./controllers/error');
 
-const sequelize = require('./util/database');
+const mongoConnect = require('./util/database');
 
+/*
+mysqlでの設定
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
-
+const sequelize = require('./util/database');
 const Product = require('./models/product');
 const User = require('./models/user');
 const Cart = require('./models/cart');
 const CartItem = require('./models/cart-item');
 const Order = require('./models/order');
 const OrderItem = require('./models/order-item');
+*/
 
 const app = express();
 
@@ -38,6 +41,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 
 // ! 常にユーザー情報を持たせるミドルウェア
 app.use((req, res, next) => {
+  /*
   User.findByPk(1)
     .then(user => {
       req.user = user;
@@ -46,14 +50,18 @@ app.use((req, res, next) => {
     .catch(err => {
       console.log(err);
     });
+  */
 });
 
+/*
 // ! routerのマウント
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
-
+*/
 app.use(errorController.get404);
 
+/*
+mysqlでの設定
 // ! アソシエーション
 Product.belongsTo(User, { constraints: true, onDelete: 'CASCADE'});
 User.hasMany(Product);
@@ -90,4 +98,7 @@ sequelize.sync()
   .catch(err => {
     console.log(err);
   });
-
+*/
+mongoConnect((client) => {
+  app.listen(3000);
+});
