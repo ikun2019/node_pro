@@ -63,7 +63,8 @@ exports.getEditProduct = (req, res, next) => {
         pageTitle: 'Edit Product',
         path: '/admin/edit-product',
         editing: editMode,
-        product: product
+        product: product,
+        isAuthenticated: req.isLoggedIn
       });
     })
     .catch(err => {
@@ -123,7 +124,8 @@ exports.getProduct = (req, res, next) => {
       res.render('admin/products', {
         prods: products,
         path: '/admin/products',
-        pageTitle: 'Admin Products'
+        pageTitle: 'Admin Products',
+        isAuthenticated: req.isLoggedIn
       });
     })
     .catch(err => {
