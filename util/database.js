@@ -1,4 +1,3 @@
-/* // ! mysqlの設定
 const Sequelize = require('sequelize');
 
 const sequelize = new Sequelize('node-complete', 'root', '02151353', {
@@ -7,7 +6,7 @@ const sequelize = new Sequelize('node-complete', 'root', '02151353', {
 });
 
 module.exports = sequelize;
-*/
+/*
 const mongodb = require('mongodb');
 const MongoClient = mongodb.MongoClient;
 
@@ -23,3 +22,4 @@ const mongoConnect = (callback) => {
 };
 
 module.exports = mongoConnect;
+*/
